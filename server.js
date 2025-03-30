@@ -1,22 +1,56 @@
-// Import required modules
 const express = require("express");
-const path = require("path");
-
-// Create an instance of Express
 const app = express();
+const port = 3000;
 
-// Define the port
-const PORT = 3000;
+// Middleware to parse query parameters
+app.use(express.json());
 
-// Serve static files from the 'public' directory
-app.use(express.static("public"));
+// Helper function to validate input
+function validateNumbers(num1, num2) {
+  if (isNaN(num1) || isNaN(num2)) {
+    return { error: "Both num1 and num2 must be valid numbers." };
+  }
+  return null;
+}
 
-// Define a route for the homepage
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+// Addition endpoint
+app.get("/add", (req, res) => {
+  const num1 = parseFloat(req.query.num1);
+  const num2 = parseFloat(req.query.num2);
+  const error = validateNumbers(num1, num2);
+  if (error) return res.status(400).json(error);
+  res.json({ result: num1 + num2 });
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+// Subtraction endpoint
+app.get("/subtract", (req, res) => {
+  const num1 = parseFloat(req.query.num1);
+  const num2 = parseFloat(req.query.num2);
+  const error = validateNumbers(num1, num2);
+  if (error) return res.status(400).json(error);
+  res.json({ result: num1 - num2 });
+});
+
+// Multiplication endpoint
+app.get("/multiply", (req, res) => {
+  const num1 = parseFloat(req.query.num1);
+  const num2 = parseFloat(req.query.num2);
+  const error = validateNumbers(num1, num2);
+  if (error) return res.status(400).json(error);
+  res.json({ result: num1 * num2 });
+});
+
+// Division endpoint
+app.get("/divide", (req, res) => {
+  const num1 = parseFloat(req.query.num1);
+  const num2 = parseFloat(req.query.num2);
+  const error = validateNumbers(num1, num2);
+  if (error) return res.status(400).json(error);
+  if (num2 === 0)
+    return res.status(400).json({ error: "Division by zero is not allowed." });
+  res.json({ result: num1 / num2 });
+});
+
+app.listen(port, () => {
+  console.log(`Calculator microservice running at http://localhost:${port}`);
 });
