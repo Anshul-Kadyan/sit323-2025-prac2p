@@ -18,7 +18,7 @@ This project is a microservice built using Node.js and Express that offers basic
 
 ### 2. Create and configure the Node.js project
 ```bash
-git clone https://github.com/yourusername/sit323-2025-prac4p
+git clone https://github.com/Anshul-Kadyan/sit323-2025-prac4p
 cd sit323-2025-prac4p
 npm install
 ```
