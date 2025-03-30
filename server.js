@@ -1,9 +1,6 @@
 // ============================
 // SIT323/SIT737 - 4.2C: Enhanced Calculator Microservice
 // ============================
-
-// File: index.js
-
 const express = require("express");
 const app = express();
 const port = 3000;

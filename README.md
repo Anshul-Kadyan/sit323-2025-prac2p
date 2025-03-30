@@ -27,7 +27,7 @@ npm install
 ### 3. Run the Microservice
 
 ```bash
-node index.js
+node server.js
 ```
 
 Access it via: `http://localhost:3000`
