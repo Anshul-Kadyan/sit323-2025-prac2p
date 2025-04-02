@@ -2,19 +2,23 @@
 
 This enhanced calculator microservice builds upon Task 4.1P by introducing advanced arithmetic operations: exponentiation, square root, and modulo. It also maintains comprehensive error handling for robust operation.
 
+---
+
 ## Part I - Requirements
 
 - Support for addition, subtraction, multiplication, and division.
 - Support for exponentiation, square root, and modulo operations.
 - REST API structure with clear input validation and error responses.
 
+---
+
 ## Instructions
 
 ### 1. Set up the development environment
 
-- Install Node.js: https://nodejs.org/en/download/
-- Install Git: https://git-scm.com/
-- Install Visual Studio Code: https://code.visualstudio.com/
+- Install [Node.js](https://nodejs.org/en/download/)
+- Install [Git](https://git-scm.com/)
+- Install [Visual Studio Code](https://code.visualstudio.com/)
 
 ### 2. Clone the Repository and Install Dependencies
 
@@ -30,7 +34,9 @@ npm install
 node server.js
 ```
 
-Access it via: `http://localhost:3000`
+Access it via: [http://localhost:3000](http://localhost:3000)
+
+---
 
 ## API Endpoints
 
@@ -42,25 +48,29 @@ Access it via: `http://localhost:3000`
 - **Square Root**: `/sqrt?num=16`
 - **Modulo**: `/modulo?num1=10&num2=3`
 
+---
+
 ## Error Handling
 
-- Invalid inputs:
+- **Invalid inputs:**
 
 ```json
 { "error": "Both num1 and num2 must be valid numbers." }
 ```
 
-- Division or modulo by zero:
+- **Division or modulo by zero:**
 
 ```json
 { "error": "Division by zero is not allowed." }
 ```
 
-- Square root of a negative number:
+- **Square root of a negative number:**
 
 ```json
 { "error": "Cannot compute square root of a negative number." }
 ```
+
+---
 
 ## Step-by-Step Implementation Process
 
@@ -71,3 +81,5 @@ Access it via: `http://localhost:3000`
 5. Tested endpoints locally using browser.
 6. Documented API usage and instructions in README.
 7. Pushed the code to a public GitHub repository.
+
+---
