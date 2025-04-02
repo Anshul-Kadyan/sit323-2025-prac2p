@@ -24,7 +24,7 @@ This enhanced calculator microservice builds upon Task 4.1P by introducing advan
 
 ```bash
 git clone https://github.com/Anshul-Kadyan/sit323-2025-prac2p
-cd sit323-2025-prac4c
+cd sit323-2025-prac2p
 npm install
 ```
 
