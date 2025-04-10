@@ -31,7 +31,7 @@ npm install
 ### 3. Run the Microservice
 
 ```bash
-node index.js
+node server.js
 ```
 
 Access it via: [http://localhost:3000](http://localhost:3000)
@@ -125,7 +125,6 @@ http://localhost:3001/add?num1=10&num2=5
 ### Docker Compose Overview
 
 - Builds image from Dockerfile.
-- Maps port `3000` in the container to port `3001` on the host machine.
 - Automatically restarts the container if it stops unexpectedly.
 
 ```yaml
@@ -134,7 +133,7 @@ services:
     image: calculator-app
     build: .
     ports:
-      - "3001:3000"
+      - "3000:3000"
     restart: always
 ```
 
@@ -144,7 +143,7 @@ services:
 
 1. Created a Dockerfile to define the Node.js runtime and app setup.
 2. Added a `docker-compose.yml` to simplify building and running the container.
-3. Verified the service via Docker at `http://localhost:3001`.
+3. Verified the service via Docker at `http://localhost:3000`.
 4. Integrated Docker into the existing GitHub project.
 
 ---
