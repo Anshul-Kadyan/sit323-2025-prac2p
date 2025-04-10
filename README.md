@@ -102,12 +102,12 @@ This enhanced calculator microservice has been Dockerised to support container-b
 docker compose up
 ```
 
-The application will be accessible at: [http://localhost:3001](http://localhost:3001)
+The application will be accessible at: [http://localhost:3000](http://localhost:3000)
 
 Example endpoint:
 
 ```
-http://localhost:3001/add?num1=10&num2=5
+http://localhost:3000/add?num1=10&num2=5
 ```
 
 ---
@@ -145,5 +145,99 @@ services:
 2. Added a `docker-compose.yml` to simplify building and running the container.
 3. Verified the service via Docker at `http://localhost:3000`.
 4. Integrated Docker into the existing GitHub project.
+
+---
+
+## Part III - Kubernetes Deployment (Task 6P)
+
+This project has also been deployed to a local Kubernetes cluster using `kubectl`, with NodePort exposing the service on port 3000.
+
+---
+
+### Kubernetes Setup Instructions
+
+#### 1. Ensure Kubernetes and kubectl are Installed
+
+- Docker Desktop (with Kubernetes enabled)
+- `kubectl` CLI (installed via Homebrew)
+
+#### 2. Apply the Deployment and Service
+
+```bash
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+Check status:
+
+```bash
+kubectl get pods
+kubectl get services
+```
+
+---
+
+### Access the App via Kubernetes
+
+Once deployed, the app is available at:
+
+```url
+http://localhost:30000/add?num1=10&num2=5
+```
+
+---
+
+### Kubernetes Files Overview
+
+**deployment.yaml**:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calculator-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calculator
+  template:
+    metadata:
+      labels:
+        app: calculator
+    spec:
+      containers:
+        - name: calculator-container
+          image: anshulkadyan/calculator-app:v1
+          ports:
+            - containerPort: 3000
+```
+
+**service.yaml**:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: calculator-service
+spec:
+  type: NodePort
+  selector:
+    app: calculator
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30000
+```
+
+---
+
+### Kubernetes Deployment Summary
+
+1. Pushed Docker image to Docker Hub (`anshulkadyan/calculator-app:v1`)
+2. Created a Kubernetes Deployment to manage the pod
+3. Created a NodePort service to expose it externally
+4. Successfully accessed the app via `http://localhost:30000`
 
 ---
