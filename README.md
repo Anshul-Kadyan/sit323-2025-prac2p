@@ -31,7 +31,7 @@ npm install
 ### 3. Run the Microservice
 
 ```bash
-node server.js
+node index.js
 ```
 
 Access it via: [http://localhost:3000](http://localhost:3000)
@@ -81,5 +81,70 @@ Access it via: [http://localhost:3000](http://localhost:3000)
 5. Tested endpoints locally using browser.
 6. Documented API usage and instructions in README.
 7. Pushed the code to a public GitHub repository.
+
+---
+
+## Part II - Dockerisation (Task 5.1P)
+
+This enhanced calculator microservice has been Dockerised to support container-based development and deployment.
+
+---
+
+### Docker Setup Instructions
+
+#### 1. Ensure Docker is Installed
+
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop)
+
+#### 2. Build and Run with Docker Compose
+
+```bash
+docker compose up
+```
+
+The application will be accessible at: [http://localhost:3001](http://localhost:3001)
+
+Example endpoint:
+
+```
+http://localhost:3001/add?num1=10&num2=5
+```
+
+---
+
+### Dockerfile Overview
+
+- **Base image**: `node:18`
+- **Working directory**: `/usr/src/app`
+- **Dependencies installed**: via `npm install`
+- **Port exposed**: `3000` (mapped to `3001` on host)
+- **Command**: `node index.js`
+
+---
+
+### Docker Compose Overview
+
+- Builds image from Dockerfile.
+- Maps port `3000` in the container to port `3001` on the host machine.
+- Automatically restarts the container if it stops unexpectedly.
+
+```yaml
+services:
+  calculator:
+    image: calculator-app
+    build: .
+    ports:
+      - "3001:3000"
+    restart: always
+```
+
+---
+
+### Dockerisation Steps Summary
+
+1. Created a Dockerfile to define the Node.js runtime and app setup.
+2. Added a `docker-compose.yml` to simplify building and running the container.
+3. Verified the service via Docker at `http://localhost:3001`.
+4. Integrated Docker into the existing GitHub project.
 
 ---
