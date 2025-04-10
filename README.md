@@ -117,8 +117,8 @@ http://localhost:3001/add?num1=10&num2=5
 - **Base image**: `node:18`
 - **Working directory**: `/usr/src/app`
 - **Dependencies installed**: via `npm install`
-- **Port exposed**: `3000` (mapped to `3001` on host)
-- **Command**: `node index.js`
+- **Port exposed**: `3000`
+- **Command**: `node server.js`
 
 ---
 
