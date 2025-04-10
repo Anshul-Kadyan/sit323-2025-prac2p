@@ -241,3 +241,56 @@ spec:
 4. Successfully accessed the app via `http://localhost:30000`
 
 ---
+
+## Part IV - Kubernetes Port Forwarding (Task 6C)
+
+This section demonstrates how the deployed calculator microservice was accessed using `kubectl port-forward`.
+
+---
+
+### 🧪 Verifying the Deployment
+
+Checked that the pod and service were running using the following commands:
+
+```bash
+kubectl get pods
+kubectl get services
+```
+
+Sample output:
+
+```
+NAME                                     READY   STATUS    RESTARTS   AGE
+calculator-deployment-6b988886b8-78plf   1/1     Running   0          11m
+
+NAME                 TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+calculator-service   NodePort    10.104.75.28   <none>        3000:30000/TCP   11m
+```
+
+---
+
+### 🚪 Port Forwarding to Access the App
+
+The following command was used to forward local port 3000 to the pod’s internal port 3000:
+
+```bash
+kubectl port-forward calculator-deployment-6b988886b8-78plf 3000:3000
+```
+
+This allowed accessing the service at:
+
+👉 `http://localhost:3000/add?num1=10&num2=5`
+
+Response:
+
+```json
+{ "result": 15 }
+```
+
+---
+
+### ✅ Summary of Task 6C
+
+- Verified pod and service were running inside the Kubernetes cluster
+- Used `kubectl port-forward` to route traffic from local machine to the container
+- Successfully tested the microservice endpoints using the browser
