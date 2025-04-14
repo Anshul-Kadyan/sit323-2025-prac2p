@@ -294,3 +294,67 @@ Response:
 - Verified pod and service were running inside the Kubernetes cluster
 - Used `kubectl port-forward` to route traffic from local machine to the container
 - Successfully tested the microservice endpoints using the browser
+
+---
+
+## Part V - Publishing to Google Container Registry (Task 5.2D)
+
+In this task, the Dockerized microservice was successfully published to **Google Container Registry (GCR)**, enabling cloud-hosted container distribution and integration.
+
+---
+
+### 🛠 GCR Setup & Deployment Steps
+
+1. **Enabled Google Container Registry API** on Google Cloud Console.
+2. **Installed Google Cloud SDK** using Homebrew.
+3. **Authenticated and configured Docker** with the following commands:
+
+```bash
+gcloud auth login
+gcloud config set project sit323-prac5-2d
+gcloud auth configure-docker
+```
+
+4. **Tagged and pushed the image** to GCR:
+
+```bash
+docker tag calculator-app gcr.io/sit323-prac5-2d/calculator-app:v1
+docker push gcr.io/sit323-prac5-2d/calculator-app:v1
+```
+
+---
+
+### 📦 Image Details
+
+- **Image Name**: `calculator-app`
+- **GCR Registry Path**:  
+  `gcr.io/sit323-prac5-2d/calculator-app:v1`
+
+---
+
+### ✅ Pulling and Running from GCR
+
+To verify that the cloud-published image works correctly:
+
+```bash
+docker pull gcr.io/sit323-prac5-2d/calculator-app:v1
+docker run -d -p 3000:3000 gcr.io/sit323-prac5-2d/calculator-app:v1
+```
+
+Test endpoint in browser:
+
+👉 `http://localhost:3000/add?num1=10&num2=5`
+
+Expected result:
+
+```json
+{ "result": 15 }
+```
+
+---
+
+### ☁️ Summary of Task 5.2D
+
+- Image successfully uploaded to Google Container Registry
+- Verified cloud-hosted image functionality using Docker
+- Project is now cloud-native ready for CI/CD and orchestration
