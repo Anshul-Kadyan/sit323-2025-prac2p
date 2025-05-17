@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongo-client
+spec:
+  containers:
+    - name: mongo-client
+      image: mongodb/mongodb-community-server:6.0-ubi8
+      command: ["sleep"]
+      args: ["3600"]
+      imagePullPolicy: Always
+      env:
+        - name: DOCKER_DEFAULT_PLATFORM
+          value: linux/amd64
+  restartPolicy: Never

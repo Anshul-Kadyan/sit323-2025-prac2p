@@ -358,3 +358,32 @@ Expected result:
 - Image successfully uploaded to Google Container Registry
 - Verified cloud-hosted image functionality using Docker
 - Project is now cloud-native ready for CI/CD and orchestration
+
+# SIT323/SIT737 – Task 9.1P: Enhanced Calculator Microservice with MongoDB & Kubernetes
+
+This project extends the SIT323 calculator microservice by adding MongoDB integration and deploying the full stack into Kubernetes. It enables persistent storage of operation logs for audit and traceability.
+
+---
+
+## 🛠 Technologies Used
+
+- Node.js + Express
+- MongoDB
+- Docker & Docker Hub
+- Kubernetes (Deployment, Services)
+- `mongosh` shell for data verification
+
+---
+
+## 🚀 Microservice Features
+
+- Supports: addition, subtraction, multiplication, division, power, sqrt, modulo
+- MongoDB logs each operation:
+  ```json
+  {
+    "operation": "add",
+    "input": { "num1": 10, "num2": 5 },
+    "result": 15,
+    "timestamp": "..."
+  }
+  ```
