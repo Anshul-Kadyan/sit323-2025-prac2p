@@ -387,3 +387,25 @@ This project extends the SIT323 calculator microservice by adding MongoDB integr
     "timestamp": "..."
   }
   ```
+
+## 📊 Monitoring & Visibility (Task 10.1P)
+
+This microservice was deployed to a GKE (Google Kubernetes Engine) cluster and integrated with Google Cloud Monitoring and Cloud Logging for observability.
+
+✅ Steps Followed:
+
+1. Enabled Cloud Monitoring & Logging APIs in GCP.
+2. Deployed the app using kubectl with:
+   - deployment.yaml (calculator)
+   - mongo-deployment.yaml (MongoDB)
+   - service.yaml (NodePort)
+3. Verified logs via GCP Logs Explorer:
+   resource.type="k8s_container"
+   resource.labels.container_name="calculator-container"
+4. Confirmed logs for container startup and MongoDB connection.
+5. Created Monitoring Dashboard to track pod health and metrics.
+
+🛠 Tools Used:
+
+- GCP Logs Explorer (Cloud Logging) for log inspection and filtering.
+- GCP Cloud Monitoring for custom dashboard, uptime checks, and resource metrics.
